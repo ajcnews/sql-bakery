@@ -1,0 +1,38 @@
+{
+  "name": "grunt-sql-bakery",
+  "version": "0.0.1",
+  "description": "Bakes out json from sql",
+  "repository": "",
+  "author": {
+    "name": "Ashlyn Still",
+    "email": "ashlyn.still@gmail.com",
+    "url": ""
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-nodeunit": "~0.3.0",
+    "grunt": "~0.4.2",
+    "jshint-stylish": "~0.1.5",
+    "load-grunt-tasks": "~0.3.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "bluebird": "^2.9.30",
+    "bookshelf": "^0.8.1",
+    "firenze": "^0.1.2",
+    "firenze-adapter-mysql": "^0.1.1",
+    "knex": "^0.8.6",
+    "promise": "^7.0.3"
+  }
+}
