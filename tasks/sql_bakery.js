@@ -8,7 +8,7 @@
 var Promise  = require('bluebird'),
     _ = require('underscore');
 
-// 'use strict';
+'use strict';
 
 module.exports = function (grunt) {
 
@@ -47,22 +47,6 @@ module.exports = function (grunt) {
     });
 
     var bookshelf = require('bookshelf')(knex);
-
-    var Model = bookshelf.Model.extend({
-       tableName: 'use_of_force'
-    });
-
-    var Collection = bookshelf.Collection.extend({
-      model: Model
-    });
-
-    var collection = new Collection();
-
-    collection.fetch().then(function(collection) {
-        var json = JSON.stringify(collection);
-        grunt.log.writeln(json);
-    });
-
     
 
     // check for data directory, if doesn't exit, create
@@ -82,51 +66,30 @@ module.exports = function (grunt) {
 
     checkCredentials(options);
 
-    // var db = new Database({
-    //   adapter: MysqlAdapter,
-    //   host: options.host,
-    //   database: options.db,
-    //   user: options.user,
-    //   password: options.pw
-    // });
+    var tables = options.tables,
+      Model, Collection, collection, output;
+
+    tables.forEach(function(t){ 
+      Model = bookshelf.Model.extend({
+        tableName: t
+      });
+
+      Collection = bookshelf.Collection.extend({
+        model: Model
+      });
+
+      collection = new Collection();
+
+      collection.fetch().then(function(collection) {
+          output = JSON.stringify(collection, null, 4);
+          grunt.file.write(options.output_path+'/'+t+'.json', output, 'utf-8');
+      }).then(function(){
+        done();
+      });
+
+    });
 
 
-
-    // var Model, Collection;
-
-    // var sequence = Promise.resolve();
-
-    // var getJson = function(table){
-    //   Model = f.createModelClass({
-    //     collectionClass: Collection
-    //   });
-
-    //   Collection = f.createCollectionClass({
-    //     db: db, // instance of your Database
-    //     table: table,
-    //     modelClass: Model
-    //   });
-
-    //   var collection = new Collection();
-    //   return collection.findAll();
-    //   // fs.writeFile(options.output_path+'/'+table+'.json', JSON.stringify(output, null, 4), 'utf-8');
-
-
-    // }
-
-    // var tables = options.tables;
-
-    // tables.forEach(function(t){ 
-    //   getJson(t).then(function(collection) {
-    //     grunt.log.ok("Success!");
-    //     var output=[];
-    //     collection.forEach(function(m){
-    //       output.push(m.attributes);
-    //     });
-    //     fs.writeFile(options.output_path+'/'+t+'.json', JSON.stringify(output, null, 4), 'utf-8');
-    //     done();
-    //   });
-    // });
 
     
 

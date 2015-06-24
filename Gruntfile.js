@@ -1,5 +1,5 @@
 /*
- * grunt-sql-bakery
+ * sql-bakery
  * 
  *
  * Copyright (c) 2015 Ashlyn Still
@@ -41,11 +41,6 @@ module.exports = function (grunt) {
         password: '<%= sql.pw %>',
         tables: '<%= sql.tables %>',
         output_path: './data'
-      },
-      single_file_test: {
-        files: {
-          'tmp/default_options': ['test/fixtures']
-        }
       }
     }
 

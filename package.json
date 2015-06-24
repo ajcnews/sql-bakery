@@ -1,5 +1,5 @@
 {
-  "name": "grunt-sql-bakery",
+  "name": "sql-bakery",
   "version": "0.0.1",
   "description": "Bakes out json from sql",
   "repository": "",
@@ -30,8 +30,6 @@
   "dependencies": {
     "bluebird": "^2.9.30",
     "bookshelf": "^0.8.1",
-    "firenze": "^0.1.2",
-    "firenze-adapter-mysql": "^0.1.1",
     "knex": "^0.8.6",
     "promise": "^7.0.3"
   }
