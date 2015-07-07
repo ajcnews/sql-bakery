@@ -1,12 +1,18 @@
 {
-  "name": "sql-bakery",
+  "name": "grunt-sql-bakery",
   "version": "0.0.1",
   "description": "Bakes out json from sql",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NewsappAJC/sql-bakery.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NewsappAJC/sql-bakery/issues"
+  },
   "author": {
     "name": "Ashlyn Still",
     "email": "ashlyn.still@gmail.com",
-    "url": ""
+    "url": "https://github.com/ashlynstill"
   },
   "keywords": [
     "gruntplugin"
