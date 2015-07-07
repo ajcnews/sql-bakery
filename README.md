@@ -2,8 +2,6 @@
 
 > Bakes out json from sql
 
-####IMPORTANT: This is version 0.0.1 and an MVP. Don't use this yet! Is not fully ready for use.
-
 
 ## Getting Started
 This plugin requires Grunt.
@@ -44,7 +42,7 @@ grunt.initConfig({
 
 ### Options
 
-All of the options passed in will be pulled from the `config/sql.json` file, where your database credentials are stored. This config file should be included in your `.gitignore` so you don't publish your db credentials.
+All of the options passed in will be pulled from the `config/sql.json` file, where your database credentials are stored. This config file should be included in your `.gitignore` so you don't publish your db credentials. There's an example of what this file should look like in the config folder called `sql.json.example`.
 
 
 
