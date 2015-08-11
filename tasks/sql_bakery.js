@@ -6,7 +6,8 @@
  * Licensed under the MIT license.
  */
 var Promise  = require('bluebird'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    mysql = require('mysql');
 
 'use strict';
 
