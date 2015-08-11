@@ -1,6 +1,6 @@
 {
   "name": "grunt-sql-bakery",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Bakes out json from sql",
   "repository": {
     "type": "git",
