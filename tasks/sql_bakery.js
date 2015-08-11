@@ -29,8 +29,9 @@ module.exports = function (grunt) {
   grunt.registerMultiTask('sql_bakery', 'Bakes out json from sql', function () {
     
     //get options
-    var done = this.async(); 
     var options = this.options(DEFAULTS);
+    var async = grunt.util.async;
+    var done = this.async(); 
 
     grunt.log.writeln(options.database);
 
@@ -69,7 +70,8 @@ module.exports = function (grunt) {
     var tables = options.tables,
       Model, Collection, collection, output;
 
-    tables.forEach(function(t){ 
+
+    tables.forEach(function(t,i){ 
       Model = bookshelf.Model.extend({
         tableName: t
       });
@@ -78,19 +80,19 @@ module.exports = function (grunt) {
         model: Model
       });
 
-      collection = new Collection();
-
+      var collection = new Collection();
+      var count = 1;
       collection.fetch().then(function(collection) {
           output = JSON.stringify(collection, null, 4);
           grunt.file.write(options.output_path+'/'+t+'.json', output, 'utf-8');
+          count++;
       }).then(function(){
-        done();
+        if (i===0){
+          done();
+        }
       });
 
     });
-
-
-
     
 
   });

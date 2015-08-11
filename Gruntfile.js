@@ -34,13 +34,15 @@ module.exports = function (grunt) {
 
     // Configuration to be run (and then tested).
     sql_bakery: {
-      options: {
-        host: '<%= sql.host %>',
-        database: '<%= sql.db %>',
-        user: '<%= sql.user %>',
-        password: '<%= sql.pw %>',
-        tables: '<%= sql.tables %>',
-        output_path: './data'
+      default: {
+        options: {
+          host: '<%= sql.host %>',
+          database: '<%= sql.db %>',
+          user: '<%= sql.user %>',
+          password: '<%= sql.pw %>',
+          tables: '<%= sql.tables %>',
+          output_path: './data'
+        }
       }
     }
 
