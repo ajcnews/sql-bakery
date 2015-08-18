@@ -10,13 +10,13 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 
 
 ```shell
-npm install sql-bakery --save-dev
+npm install grunt-sql-bakery --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('sql-bakery');
+grunt.loadNpmTasks('grunt-sql-bakery');
 ```
 
 ## The "sql_bakery" task
@@ -26,19 +26,25 @@ In your project's Gruntfile, add a section named `sql_bakery` to the data object
 
 ```js
 grunt.initConfig({
+  
   sql: grunt.file.readJSON('config/sql.json'),
   sql_bakery: {
-    options: {
-      host: '<%= sql.host %>',
-      database: '<%= sql.db %>',
-      user: '<%= sql.user %>',
-      password: '<%= sql.pw %>',
-      tables: '<%= sql.tables %>',
-      output_path: 'path_to_where_data_folder_will_be_created'
-    }
+    db: {
+      options: {
+        host: '<%= sql.host %>',
+        database: '<%= sql.db %>',
+        user: '<%= sql.user %>',
+        password: '<%= sql.pw %>',
+        tables: '<%= sql.tables %>',
+        output_path: 'path_to_where_data_folder_will_be_created'
+      }
+    }   
   },
+
 })
 ```
+
+To bake out your json files, run ``grunt sql_bakery``.
 
 ### Options
 
