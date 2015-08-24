@@ -68,6 +68,7 @@ module.exports = function (grunt) {
 
     checkCredentials(options);
 
+    var count = 0;
     var tables = options.tables,
       Model, Collection, collection, output;
 
@@ -82,13 +83,13 @@ module.exports = function (grunt) {
       });
 
       var collection = new Collection();
-      var count = 1;
+
       collection.fetch().then(function(collection) {
           output = JSON.stringify(collection, null, 4);
           grunt.file.write(options.output_path+'/'+t+'.json', output, 'utf-8');
           count++;
       }).then(function(){
-        if (i===0){
+        if (count===tables.length){
           done();
         }
       });
