@@ -1,6 +1,6 @@
 /*
  * sql-bakery
- * 
+ *
  *
  * Copyright (c) 2015 Ashlyn Still
  * Licensed under the MIT license.
@@ -34,15 +34,16 @@ module.exports = function (grunt) {
 
     // Configuration to be run (and then tested).
     sql_bakery: {
-      default_options:{
-        db: {
-          options: {
+      db: {
+        options: {
+          client: 'mysql',
+          tables: '<%= sql.tables %>',
+          output_path: './data',
+          connection: {
             host: '<%= sql.host %>',
             database: '<%= sql.db %>',
             user: '<%= sql.user %>',
             password: '<%= sql.pw %>',
-            tables: '<%= sql.tables %>',
-            output_path: './data'
           }
         }
       }

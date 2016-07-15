@@ -22,23 +22,26 @@ grunt.loadNpmTasks('grunt-sql-bakery');
 ## The "sql_bakery" task
 
 ### Overview
-In your project's Gruntfile, add a section named `sql_bakery` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `sql_bakery` to the data object passed into `grunt.initConfig()`. The connection object includes the connection information specific to your database. Here is an example of a MySQL connection:
 
 ```js
 grunt.initConfig({
-  
+
   sql: grunt.file.readJSON('config/sql.json'),
   sql_bakery: {
     db: {
       options: {
-        host: '<%= sql.host %>',
-        database: '<%= sql.db %>',
-        user: '<%= sql.user %>',
-        password: '<%= sql.pw %>',
+        client: '<%= sql.client %>',
         tables: '<%= sql.tables %>',
-        output_path: 'path_to_where_data_folder_will_be_created'
+        output_path: 'data_folder_path',
+        connection: {
+          host: '<%= sql.host %>',
+          database: '<%= sql.db %>',
+          user: '<%= sql.user %>',
+          password: '<%= sql.pw %>',
+        }
       }
-    }   
+    }
   },
 
 })
