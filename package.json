@@ -35,11 +35,15 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "bluebird": "^2.9.30",
     "bookshelf": "^0.8.1",
     "knex": "^0.8.6",
-    "promise": "^7.0.3",
+    "mariasql": "^0.2.6",
+    "mssql": "^3.3.0",
     "mysql": "^2.8.0",
+    "mysql2": "^1.0.0-rc.7",
+    "pg": "^6.0.2",
+    "promise": "^7.0.3",
+    "sqlite3": "^3.1.4",
     "underscore": "^1.8.3"
   }
 }
