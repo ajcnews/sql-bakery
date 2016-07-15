@@ -1,13 +1,11 @@
 /*
  * grunt-sql-bakery
- * 
+ *
  *
  * Copyright (c) 2015 Ashlyn Still
  * Licensed under the MIT license.
  */
-var Promise  = require('bluebird'),
-    _ = require('underscore'),
-    mysql = require('mysql');
+var _ = require('underscore');
 
 'use strict';
 
@@ -16,64 +14,40 @@ module.exports = function (grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
-  // var Database = f.Database;
-    
   var DEFAULTS = {
-    host: '',
-    database: '',
-    user: '',
-    password: '',
+    client: 'mysql',
     tables: [],
-    output_path: ''
+    output_path: './data',
+    connextion: {},
+    charset: 'utf8'
   };
 
   grunt.registerMultiTask('sql_bakery', 'Bakes out json from sql', function () {
-    
+
     //get options
     var options = this.options(DEFAULTS);
-    var async = grunt.util.async;
-    var done = this.async(); 
+    var done = this.async();
 
-    grunt.log.writeln(options.database);
+    checkCredentials(options);
 
-    // In a file named something like db.js
     var knex = require('knex')({
-      client: 'mysql',
-      connection: {
-        host: options.host,
-        database: options.database,
-        user: options.user,
-        password: options.password,
-        charset  : 'utf8'
-      }
+      client: options.client,
+      connection: options.connection
     });
-
     var bookshelf = require('bookshelf')(knex);
-    
+
 
     // check for data directory, if doesn't exit, create
     if (!grunt.file.isDir(options.output_path)) {
       grunt.file.mkdir(options.output_path)
     }
 
-    function checkCredentials(options){ //checks to make sure db config is all set
-     _.allKeys(options).forEach(function(o,i){
-         if(!options[o] || (o==='tables' && options[o].length<1)){
-           grunt.fail.warn("No '"+o+"' specified!");
-         } else {
-           grunt.log.writeln('Configured >> '+o);
-         }
-     });
-   };
-
-    checkCredentials(options);
-
     var count = 0;
     var tables = options.tables,
       Model, Collection, collection, output;
 
 
-    tables.forEach(function(t,i){ 
+    tables.forEach(function(t,i){
       Model = bookshelf.Model.extend({
         tableName: t
       });
@@ -84,19 +58,26 @@ module.exports = function (grunt) {
 
       var collection = new Collection();
 
-      collection.fetch().then(function(collection) {
-          output = JSON.stringify(collection, null, 4);
-          grunt.file.write(options.output_path+'/'+t+'.json', output, 'utf-8');
-          count++;
-      }).then(function(){
-        if (count===tables.length){
-          done();
-        }
+      collection.fetch( {require: true} ).then(function(collection) { //require: true -- returning an empty table triggers an error
+        grunt.log.writeln("Fetched table '" + t + "': " + collection.length + " records");
+        output = JSON.stringify(collection, null, 4);
+        grunt.file.write(options.output_path+'/'+t+'.json', output, 'utf-8');
+        count++;
+      }).catch(function(err){
+        grunt.fail.warn(err)
+      }).finally(function() {
+        return bookshelf.knex.destroy(); //destroy DB connection pool so script will exit
       });
 
     });
-    
 
   });
 
+  function checkCredentials(options){ //checks to make sure db config is all set
+    _.allKeys(options).forEach(function(o,i){
+       if(!options[o] || (o==='tables' && options[o].length<1)){
+         grunt.fail.warn("No '"+o+"' specified!");
+       }
+    });
+  }
 };
