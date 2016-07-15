@@ -76,9 +76,10 @@ module.exports = function (grunt) {
       var collection = new Collection();
 
       collection.fetch().then(function(collection) {
-          output = JSON.stringify(collection, null, 4);
-          grunt.file.write(options.output_path+'/'+t+'.json', output, 'utf-8');
-          count++;
+        grunt.log.writeln("Fetched table '" + t + "': " + collection.length + " records");
+        output = JSON.stringify(collection, null, 4);
+        grunt.file.write(options.output_path+'/'+t+'.json', output, 'utf-8');
+        count++;
       }).then(function(){
         if (count===tables.length){
           done();

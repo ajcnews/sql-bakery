@@ -36,7 +36,7 @@ module.exports = function (grunt) {
     sql_bakery: {
       db: {
         options: {
-          client: 'mysql',
+          client: '<%= sql.client %>',
           tables: '<%= sql.tables %>',
           output_path: './data',
           connection: {
