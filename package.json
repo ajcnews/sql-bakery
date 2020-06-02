@@ -1,7 +1,11 @@
 {
   "name": "grunt-sql-bakery",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bakes out json from sql",
+  "scripts": {
+    "grunt": "grunt",
+    "test": "grunt test"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/NewsappAJC/sql-bakery.git"
@@ -23,21 +27,17 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "grunt": "~0.4.2",
+    "grunt": "^0.4.5",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-nodeunit": "~0.3.0",
     "jshint-stylish": "~0.1.5",
-    "load-grunt-tasks": "~0.3.0",
-    "underscore": "^1.8.3"
-  },
-  "scripts": {
-    "test": "grunt test"
+    "load-grunt-tasks": "~0.3.0"
   },
   "dependencies": {
     "bookshelf": "^0.8.1",
     "knex": "^0.8.6",
-    "mariasql": "^0.2.6",
+    "mariadb": "^2.4.0",
     "mssql": "^3.3.0",
     "mysql": "^2.8.0",
     "mysql2": "^1.0.0-rc.7",
