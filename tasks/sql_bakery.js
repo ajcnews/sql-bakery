@@ -18,14 +18,12 @@ module.exports = function (grunt) {
     client: 'mysql',
     tables: [],
     output_path: './data',
-    connextion: {},
+    connection: {},
     charset: 'utf8'
   };
 
   grunt.registerMultiTask('sql_bakery', 'Bakes out json from sql', function () {
-
-    //get options
-    var options = this.options(DEFAULTS);
+    var options = this.options(DEFAULTS); // FIXME: this does not actually merge defaults. But we do fallback to the defaults in checkCredentials() if an option is not set
     var done = this.async();
 
     checkCredentials(options);
@@ -76,7 +74,8 @@ module.exports = function (grunt) {
   function checkCredentials(options){ //checks to make sure db config is all set
     _.allKeys(options).forEach(function(o,i){
        if(!options[o] || (o==='tables' && options[o].length<1)){
-         grunt.fail.warn("No '"+o+"' specified!");
+         grunt.log.warn("No '"+o+"' specified! Using default: "+DEFAULTS[o]);
+         options[o] = DEFAULTS[o];
        }
     });
   }

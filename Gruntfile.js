@@ -38,7 +38,8 @@ module.exports = function (grunt) {
         options: {
           client: '<%= sql.client %>',
           tables: '<%= sql.tables %>',
-          output_path: './data',
+          output_path: '<%= sql.output_path %>',
+          charset: '<%= sql.charset %>',
           connection: {
             host: '<%= sql.host %>',
             database: '<%= sql.db %>',

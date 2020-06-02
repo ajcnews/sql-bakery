@@ -1,7 +1,10 @@
 {
+  "output_path": "",
+  "client": "",
   "host": "",
   "db": "",
   "user": "",
   "pw": "",
-  "tables": []
+  "tables": [],
+  "charset": ""
 }

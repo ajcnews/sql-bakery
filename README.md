@@ -31,9 +31,10 @@ grunt.initConfig({
   sql_bakery: {
     db: {
       options: {
-        client: '<%= sql.client %>',
+        client: '<%= sql.client %>', // defaults to mysql
         tables: '<%= sql.tables %>',
-        output_path: 'data_folder_path',
+        output_path: '<%= sql.output_path %>', // defaults to './data'
+        charset: '<%= sql.charset %>', // defaults to 'utf8'
         connection: {
           host: '<%= sql.host %>',
           database: '<%= sql.db %>',
