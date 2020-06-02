@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "bookshelf": "^0.8.1",
-    "knex": "^0.8.6",
+    "knex": "^0.19.5",
     "mariadb": "^2.4.0",
     "mssql": "^3.3.0",
     "mysql": "^2.8.0",
