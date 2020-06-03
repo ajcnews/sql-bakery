@@ -59,7 +59,7 @@ module.exports = function (grunt) {
       collection.fetch( {require: true} ).then(function(collection) { //require: true -- returning an empty table triggers an error
         grunt.log.writeln("Fetched table '" + t + "': " + collection.length + " records");
         output = JSON.stringify(collection, null, 4);
-        grunt.file.write(options.output_path+'/'+t+'.json', output, 'utf-8');
+        grunt.file.write(options.output_path+'/'+t+'.json', output, { encoding: 'utf-8' });
         count++;
       }).catch(function(err){
         grunt.fail.warn(err)
