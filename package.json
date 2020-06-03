@@ -1,6 +1,6 @@
 {
   "name": "grunt-sql-bakery",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Bakes out json from sql",
   "scripts": {
     "grunt": "grunt",
@@ -28,22 +28,22 @@
   "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-jshint": "~0.8.0",
-    "grunt-contrib-nodeunit": "~0.3.0",
-    "jshint-stylish": "~0.1.5",
-    "load-grunt-tasks": "~0.3.0"
+    "grunt-contrib-clean": "~2.0.0",
+    "grunt-contrib-jshint": "~2.1.0",
+    "grunt-contrib-nodeunit": "~2.1.0",
+    "jshint-stylish": "~2.2.1",
+    "load-grunt-tasks": "~5.1.0"
   },
   "dependencies": {
     "bookshelf": "^1.1.1",
     "knex": "^0.21.1",
     "mariadb": "^2.4.0",
     "mssql": "^3.3.0",
-    "mysql": "^2.8.0",
-    "mysql2": "^1.0.0-rc.7",
-    "pg": "^6.0.2",
-    "promise": "^7.0.3",
+    "mysql": "^2.18.1",
+    "mysql2": "2.1.0",
+    "pg": "^8.2.1",
+    "promise": "^8.1.0",
     "sqlite3": "^4.2.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.10.2"
   }
 }
